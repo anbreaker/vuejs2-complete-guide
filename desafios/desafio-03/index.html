@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <body>
+    <div id="desafio">
+      <!-- 1- Exibir em "resultado" o texto 'Valor Diferente' enquanto
+        "valor" for diferente de 17 - "valor" é alterado pelos botões.
+        Mostrar 'Valor Igual' quando "valor" for igual a 17 -->
+
+      <!-- 2- Monitorar as mudança de "resultado" e reiniciar "valor"
+        para 0 depois de 5 segundos (dica: setTimeout(..., 5000)) -->
+      <div>
+        <p>Valor atual: {{ valor }}</p>
+        <button @click="valor += 5">Somar 5</button>
+        <button @click="valor += 1">Somar 1</button>
+        <button @click="valor -= 1">Restar 1</button>
+        <p>{{ alterarResultado }}</p>
+      </div>
+    </div>
+
+    <!-- versión de producción, optimizada para tamaño y velocidad -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

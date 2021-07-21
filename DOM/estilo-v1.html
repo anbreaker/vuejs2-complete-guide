@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <body>
+    <style>
+      #app {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .demo {
+        width: 100px;
+        height: 100px;
+        background-color: gray;
+      }
+      .c1 {
+        background-color: red;
+      }
+      .c2 {
+        background-color: green;
+      }
+      .c3 {
+        background-color: blue;
+      }
+    </style>
+
+    <div id="app">
+      <div class="demo" :class="{c1: aplicarC1}" @click="aplicarC1 = !aplicarC1"></div>
+      <div class="demo"></div>
+      <div class="demo"></div>
+    </div>
+
+    <!-- versión de producción, optimizada para tamaño y velocidad -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          aplicarC1: false,
+        },
+      });
+    </script>
+  </body>
+</html>

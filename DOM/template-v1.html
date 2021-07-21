@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <body>
+    <!-- versión de producción, optimizada para tamaño y velocidad -->
+
+    <div id="app">
+      <p v-once>{{ titulo }}</p>
+
+      <!-- document.querySelector('[c3r-bind]') -->
+      <p c3r-bind="abc">{{ saudacao() }}</p>
+
+      <a :href="link" target="_blank">rootdevs</a>
+
+      <hr />
+      <p v-html="linkHTML"></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          titulo: 'Benvindo a VueJs',
+          link: 'https://rootdevs.es',
+          linkHTML: `<a href="https://rootdevs.es" target="_blank">rootdevs</a>`,
+        },
+
+        methods: {
+          saudacao() {
+            this.titulo = 'Bom dia!';
+            return this.titulo;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

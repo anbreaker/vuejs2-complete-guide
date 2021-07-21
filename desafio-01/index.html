@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <body>
+    <div id="desafio">
+      <!-- 1) Preencha a tag <p> abaixo com o seu Nome e Idade - usando Interpolação -->
+      <p>Usando VueJS - Seu nome es <b>{{ nome }}</b> y su idade <b>{{ idade }}</b></p>
+
+      <!-- 2) Exiba sua idade multiplicada por 3 -->
+      <p>Sua idade multiplicada por 3 es : <b>{{ idadeVezes3() }}</b></p>
+
+      <!-- 3) Chame uma função para exibir um número randomico
+        entre 0 and 1 (Math.random()) -->
+      <p>Número randomico: <b>{{ random() }}</b></p>
+
+      <!-- 4) Procure uma imagem no google e exiba na tag img 
+        fazendo o binding no atributo "src" -->
+      <div>
+        <img height="75" :src="img" />
+      </div>
+
+      <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
+      <div>
+        <input type="text" v-bind:value="nome" />
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

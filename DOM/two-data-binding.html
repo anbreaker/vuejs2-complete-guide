@@ -9,15 +9,19 @@
   </head>
   <body>
     <div id="app">
-      <p v-once>{{ titulo }}</p>
+      <h2>{{ titulo }}</h2>
 
-      <!-- document.querySelector('[c3r-bind]') -->
-      <p c3r-bind="abc">{{ saudacao() }}</p>
+      <label>v-bind e v-on</label>
+      <input type="text" v-bind:value="titulo" v-on:input="titulo=$event.target.value" />
 
-      <a :href="link" target="_blank">rootdevs</a>
+      <label>v-model</label>
+      <input type="text" v-model="titulo" />
 
+      <br />
+      <br />
       <hr />
-      <p v-html="linkHTML"></p>
+      <p>{{ contador }} - {{ contador > 3 ? 'Maior do que 3' : 'Menor do que 3' }}</p>
+      <button v-on:click="somar">Somar 1</button>
     </div>
 
     <!-- versión de producción, optimizada para tamaño y velocidad -->
@@ -27,15 +31,13 @@
         el: '#app',
 
         data: {
-          titulo: 'Benvindo a VueJs',
-          link: 'https://rootdevs.es',
-          linkHTML: `<a href="https://rootdevs.es" target="_blank">rootdevs</a>`,
+          titulo: 'Usando VueJs',
+          contador: 0,
         },
 
         methods: {
-          saudacao() {
-            this.titulo = 'Bom dia!';
-            return this.titulo;
+          somar() {
+            this.contador++;
           },
         },
       });

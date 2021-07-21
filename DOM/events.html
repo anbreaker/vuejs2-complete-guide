@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ contador }}</p>
+      <button v-on:click="somar">Somar 1</button>
+      <button @click="restar">Restar 1</button>
+
+      <hr />
+      <p @mousemove="atualizarXY" style="border: solid 1px crimson">
+        Mouse on parrafo: {{ x }} e {{ y }}
+      </p>
+
+      <hr />
+      <p>{{ contador2 }}</p>
+      <button v-on:click="somarPasso(passo)">Somar con Passo {{ passo }}</button>
+
+      <hr />
+      <p>{{ contador3 }}</p>
+      <button v-on:click="somarEvent(passo,$event)">
+        Somar con Passo y pintar Evento{{ passo }}
+      </button>
+      <p>{{ pintarEvento }}</p>
+
+      <hr />
+      <p @mousemove="atualizarXY" style="border: solid 1px crimson">
+        Mouse on parrafo: {{ x }} e {{ y }}
+        <span @mousemove="parar">- Parar Propagação con Metodo X e Y</span>
+      </p>
+
+      <hr />
+      <p @mousemove="atualizarXY" style="border: solid 1px crimson">
+        Mouse on parrafo: {{ x }} e {{ y }}
+        <span @mousemove.stop>- Parar Propagação con diretiva .stop X e Y</span>
+      </p>
+
+      <hr />
+      <input type="text" @keydown.enter="exibirAlerta" placeholder="Escreva e Enter" />
+    </div>
+
+    <!-- versión de producción, optimizada para tamaño y velocidad -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          contador: 0,
+          contador2: 0,
+          contador3: 0,
+          passo: 5,
+          x: 0,
+          y: 0,
+          pintarEvento: '',
+        },
+
+        methods: {
+          somar() {
+            this.contador++;
+          },
+
+          somarPasso(passo) {
+            this.contador2 += passo;
+          },
+
+          somarEvent(passo, event) {
+            console.log(passo, event);
+
+            this.pintarEvento = event;
+            this.contador3 += passo;
+          },
+
+          restar() {
+            this.contador--;
+          },
+
+          atualizarXY({ clientX, clientY }) {
+            this.x = clientX;
+            this.y = clientY;
+          },
+
+          parar(event) {
+            event.stopPropagation();
+          },
+
+          exibirAlerta() {
+            alert('Estou te alertando!');
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

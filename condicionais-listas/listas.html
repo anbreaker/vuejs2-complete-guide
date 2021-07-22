@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs 2</title>
+  </head>
+  <style>
+    ul {
+      list-style: none;
+    }
+
+    h3,
+    p {
+      display: inline;
+    }
+  </style>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(cor, i) in cores">{{ i + 1 }}) {{ cor }}</li>
+      </ul>
+      <button @click="cores.push('branco')">Adicionar</button>
+      <hr />
+      <template v-for="(cor, i) in cores">
+        <h3>{{ cor }}</h3>
+        <p>{{ i }}</p>
+      </template>
+      <hr />
+      <ul>
+        <li v-for="pessoa in pessoas">
+          <span v-for="(valor, chave, index) in pessoa">
+            {{ chave }} = {{ valor }} ({{ index + 1}})
+          </span>
+        </li>
+      </ul>
+      <hr />
+      <span v-for="n in 10">{{ `${n} ` }}</span>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+          pessoas: [
+            { nome: 'Magalí', idade: 1, peso: 3.5 },
+            { nome: 'Jéssica', idade: 28, peso: 57 },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

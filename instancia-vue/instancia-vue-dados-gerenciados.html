@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs2</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{ titulo1 }}</h2>
+      <button @click="alterar">Alterar Titulo</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      const vm = new Vue({
+        el: '#app',
+
+        data: {
+          titulo1: 'Teste 1',
+        },
+
+        methods: {
+          alterar() {
+            this.titulo1 += '!';
+          },
+        },
+      });
+
+      vm.novaInfo = 'Teste';
+      console.log(vm.novaInfo);
+    </script>
+  </body>
+</html>

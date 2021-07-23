@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs2</title>
+  </head>
+  <body>
+    <div id="app1">
+      {{ titulo1 }}
+      <button @click="alterar">Alterar Titulo</button>
+    </div>
+
+    <div id="app2">
+      {{ titulo2 }}
+      <button @click="alterar">Alterar Titulo</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app1',
+
+        data: {
+          titulo1: 'Teste 1',
+        },
+
+        methods: {
+          alterar() {
+            this.titulo1 += '!!';
+          },
+        },
+      });
+
+      new Vue({
+        el: '#app2',
+
+        data: {
+          titulo2: 'Teste 2',
+        },
+
+        methods: {
+          alterar() {
+            this.titulo2 += '!!';
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

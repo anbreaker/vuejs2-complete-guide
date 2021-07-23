@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs2</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ titulo }}</h1>
+
+      <button @click="titulo += '#'">Alterar Título</button>
+
+      <button @click="$destroy()">Destruir</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: '#app',
+
+        data: {
+          titulo: 'Ciclo de Vida',
+        },
+
+        beforeCreate() {
+          console.log('beforeCreate - Antes de Criar');
+        },
+
+        created() {
+          console.log('beforeCreate - Criado');
+        },
+
+        beforeMount() {
+          console.log('beforeCreate - Antes de Montar (DOM)');
+        },
+
+        mounted() {
+          console.log('beforeCreate - DOM Montada');
+        },
+
+        beforeUpdate() {
+          console.log('beforeUpdate - Antes de Atualizar');
+        },
+
+        updated() {
+          console.log('updated - Atualizado');
+        },
+
+        beforeDestroy() {
+          console.log('beforeDestroy - Antes de destruir');
+        },
+
+        destroyed() {
+          console.log('destroyed - Destruido');
+        },
+      });
+    </script>
+  </body>
+</html>

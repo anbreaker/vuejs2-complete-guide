@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://fav.farm/⚙️" type="image/x-icon" />
+    <title>VueJs2</title>
+  </head>
+  <body>
+    <div id="app1">
+      <contador1></contador1>
+      <contador1></contador1>
+      <contador1></contador1>
+    </div>
+
+    <hr />
+
+    <div id="app2">
+      <app-contador></app-contador>
+      <app-contador></app-contador>
+      <app-contador></app-contador>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      // Registro Global
+      const contador = {
+        template: `
+          <div>
+            <span>{{ contador }}</span>
+            <button @click="contador++">+</button>
+            <button @click="contador--">-</button>
+          </div>
+        `,
+        data() {
+          return {
+            contador: 0,
+          };
+        },
+      };
+
+      new Vue({
+        el: '#app1',
+
+        // Registro Local
+        components: {
+          contador1: contador,
+        },
+      });
+
+      new Vue({
+        el: '#app2',
+
+        // Registro Local
+        components: {
+          'app-contador': contador,
+        },
+      });
+    </script>
+  </body>
+</html>

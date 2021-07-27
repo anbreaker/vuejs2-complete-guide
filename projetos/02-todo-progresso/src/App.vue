@@ -35,6 +35,16 @@ export default {
     },
   },
 
+  watch: {
+    tasks: {
+      deep: true,
+      handler() {
+        console.log('entra aqui');
+        localStorage.setItem('tarefas', JSON.stringify(this.tasks));
+      },
+    },
+  },
+
   methods: {
     addTask({ name, pending }) {
       if (name) {
@@ -54,6 +64,11 @@ export default {
     toggleTaskState(idx) {
       this.tasks[idx].pending = !this.tasks[idx].pending;
     },
+  },
+
+  created() {
+    const tarefas = localStorage.getItem('tarefas');
+    this.tasks = JSON.parse(tarefas) || [];
   },
 };
 </script>

@@ -3,7 +3,11 @@
     <h1>Tarefas</h1>
 
     <NewTask @taskAdded="addTask" />
-    <TaskGrid :tasks="tasks" />
+    <TaskGrid
+      :tasks="tasks"
+      @taskDeleted="deleteTask"
+      @taskStateChanged="toggleTaskState"
+    />
   </div>
 </template>
 
@@ -16,21 +20,28 @@ export default {
 
   data() {
     return {
-      tasks: [
-        { name: 'Lavar a louça', pending: false },
-        { name: 'Comprar blusa', pending: true },
-      ],
+      tasks: [],
     };
   },
 
   methods: {
     addTask({ name, pending }) {
-      const sameName = (task) => name === task.name;
+      if (name) {
+        const sameName = (task) => name === task.name;
 
-      const reallyNew = this.tasks.filter(sameName).length === 0;
+        const reallyNew = this.tasks.filter(sameName).length === 0;
 
-      if (reallyNew) this.tasks.push({ name, pending: pending || true });
-      else alert('Esta tarea ya existe');
+        if (reallyNew) this.tasks.push({ name, pending: pending || true });
+        else alert('Esta tarea ya existe');
+      }
+    },
+
+    deleteTask(idx) {
+      this.tasks.splice(idx, 1);
+    },
+
+    toggleTaskState(idx) {
+      this.tasks[idx].pending = !this.tasks[idx].pending;
     },
   },
 };

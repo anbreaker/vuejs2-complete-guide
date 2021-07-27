@@ -25,11 +25,6 @@ export default {
 
       this.name = '';
     },
-
-    // deleteTask(task){
-    //   this.$emit('taskAdded', { name: this.name });
-
-    // }
   },
 };
 </script>

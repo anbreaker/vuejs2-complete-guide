@@ -33,13 +33,12 @@
     </transition>
     <hr />
 
-    <button @click="exibir2 = !exibir2">Mostrar</button>
+    <b-button @click="exibir2 = !exibir2" variant="info">Alternar</b-button>
     <transition
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter"
       @enter-cancelled="enterCancelled"
-			
       @before-leave="beforeLeave"
       @leave="leave"
       @after-leave="afterLeave"
@@ -47,18 +46,95 @@
     >
       <div class="caixa" v-if="exibir2"></div>
     </transition>
+    <hr />
+
+    <div class="mb-3">
+      <b-button @click="componenteSelecionado = 'AlertaInfo'" variant="primary">
+        Info
+      </b-button>
+      <b-button
+        @click="componenteSelecionado = 'AlertaAdvertencia'"
+        variant="warning"
+      >
+        Advêrtencia
+      </b-button>
+    </div>
+
+    <transition name="fade" mode="out-in">
+      <component :is="componenteSelecionado"></component>
+    </transition>
   </div>
 </template>
 
 <script>
+import AlertaAdvertencia from "./AlertaAdvertencia.vue";
+import AlertaInfo from "./AlertaInfo";
+
 export default {
+  components: { AlertaAdvertencia, AlertaInfo },
+
   data() {
     return {
       msg: "Uma mensagem de informaçao para o usuário!",
       exibir: false,
       exibir2: true,
-      tipoAnimacao: false
+      tipoAnimacao: false,
+      larguraBase: 0,
+      componenteSelecionado: "AlertaInfo"
     };
+  },
+
+  /* eslint-disable */
+  methods: {
+    beforeEnter(el) {
+      console.log("beforeEnter");
+      this.larguraBase = 0;
+      el.style.width = `${this.larguraBase}px`;
+    },
+    // eslint-disable-next-line no-use-before-define
+    enter(el, done) {
+      this.animar(el, done, false);
+    },
+
+    // afterEnter(el) {
+    //   console.log("afterEnter");
+    // },
+
+    // enterCancelled() {
+    //   console.log("enterCancelled");
+    // },
+
+    beforeLeave(el) {
+      console.log("beforeLeave");
+      this.larguraBase = 300;
+      el.style.width = `${this.larguraBase}px`;
+    },
+    // eslint-disable-next-line no-use-before-define
+    leave(el, done) {
+      this.animar(el, done, true);
+    },
+
+    // afterLeave(el) {
+    //   console.log("afterLeave");
+    // },
+
+    // leaveCancelled() {
+    //   console.log("enterCancelled");
+    // },
+
+    animar(el, done, negativo) {
+      let rodada = 1;
+      const temporizador = setInterval(() => {
+        const novaLargura =
+          this.larguraBase + (negativo ? -rodada * 10 : rodada * 10);
+        el.style.width = `${novaLargura}px`;
+        rodada++;
+        if (rodada > 30) {
+          clearInterval(temporizador);
+          done();
+        }
+      }, 20);
+    }
   }
 };
 </script>

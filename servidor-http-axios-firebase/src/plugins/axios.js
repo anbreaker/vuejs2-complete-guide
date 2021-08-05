@@ -7,7 +7,7 @@ Vue.use({
     Vue.prototype.$http = axios.create({
       baseURL: process.env.VUE_APP_URL_FIREBASE,
       headers: {
-        Authorization: "abc123",
+        Authorization: "anbreaker",
       },
     })
 

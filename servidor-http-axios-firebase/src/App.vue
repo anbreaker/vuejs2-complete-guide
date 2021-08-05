@@ -44,6 +44,19 @@
         <br />
         <strong>Id: {{ id }}</strong>
         <br />
+        <div class="mt-3">
+          <b-button @click="carregar(id)" size="lg" variant="warning">
+            Carregar
+          </b-button>
+          <b-button
+            @click="excluir(id)"
+            size="lg"
+            variant="danger"
+            class="ml-2"
+          >
+            Excluir
+          </b-button>
+        </div>
       </b-list-group-item>
     </b-list-group>
   </div>
@@ -54,6 +67,7 @@ export default {
   data() {
     return {
       usuarios: [],
+      id: null,
       usuario: {
         nome: "",
         email: ""
@@ -63,8 +77,9 @@ export default {
 
   methods: {
     async salvar() {
+      //min 6
       await this.$http.post("usuarios.json", this.usuario);
-      this.limpiar();
+      this.limpar();
     },
 
     async obterUsuarios() {
@@ -72,9 +87,20 @@ export default {
       this.usuarios = response.data;
     },
 
-    limpiar() {
+    carregar(id) {
+      this.id = id;
+      this.usuario = { ...this.usuarios[id] };
+    },
+
+    async excluir(id) {
+      await this.$http.delete(`/usuarios/${id}.json`);
+      this.limpar();
+    },
+
+    limpar() {
       this.usuario.nome = "";
       this.usuario.email = "";
+      this.id = null;
     }
   }
   // Prueba firebase

@@ -2,6 +2,16 @@
   <div id="app" class="container">
     <h1>HTTP com Axios</h1>
 
+    <b-alert
+      show
+      dismissible
+      v-for="(mensagem, idx) in mensagens"
+      :key="idx"
+      :variant="mensagem.tipo"
+    >
+      {{ mensagem.texto }}
+    </b-alert>
+
     <b-card>
       <b-form-group label="Nome:">
         <b-form-input
@@ -66,6 +76,7 @@
 export default {
   data() {
     return {
+      mensagens: [],
       usuarios: [],
       id: null,
       usuario: {
@@ -77,9 +88,15 @@ export default {
 
   methods: {
     async salvar() {
-      //min 6
-      await this.$http.post("usuarios.json", this.usuario);
+      const metodo = this.id ? "patch" : "post";
+      const finalUrl = this.id ? `${this.id}.json` : ".json";
+
+      await this.$http[metodo](`/usuarios/${finalUrl}`, this.usuario);
       this.limpar();
+      this.mensagens.push({
+        texto: "Operaçao realizada com sucesso!!",
+        tipo: "success"
+      });
     },
 
     async obterUsuarios() {
@@ -93,13 +110,22 @@ export default {
     },
 
     async excluir(id) {
-      await this.$http.delete(`/usuarios/${id}.json`);
-      this.limpar();
+      try {
+        await this.$http.delete(`/usuarios/${id}.json`);
+        this.limpar();
+      } catch (error) {
+        this.mensagens.push({
+          texto: "Problema para excluir!!",
+          tipo: "danger"
+        });
+        console.log(error);
+      }
     },
 
     limpar() {
       this.usuario.nome = "";
       this.usuario.email = "";
+      this.mensagens = [];
       this.id = null;
     }
   }

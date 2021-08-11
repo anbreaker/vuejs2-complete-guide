@@ -2,6 +2,7 @@ import Vue from "vue"
 import "./plugins/vuetify"
 import App from "./App.vue"
 
+import "./plugins/axios.config"
 import router from "./router/router"
 import store from "./store/store"
 import { currency } from "./filters/filters"
